@@ -1,41 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            min-width: 100px;
-            min-height: 100vh;
-            background-color: black;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Search API</title>
 
-        h1 {
-            color: white;
-            text-align: center;
-        }
+  <style>
+    body {
+      min-height: 100vh;
+      background-color: black;
+      margin: 0;
+      font-family: Arial;
+    }
 
-        form {
-            
-            text-align: center;
-        }
-        img:hover{
-            transform: scale(1.04);
+    h1 {
+      color: white;
+      text-align: center;
+      margin-top: 20px;
+    }
 
-        }
-      
-    </style>
+    form {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+      background: red;
+      color: white;
+    }
+
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    img {
+      width: 150px;
+      margin: 10px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    p {
+      color: white;
+    }
+  </style>
 </head>
-<body>
-    <h1>Movie Search API</h1>
-    <form>
-        <input type="text" class="search-input" />
-        <button type="submit" class="search">SEARCH</button>
-    </form>
-    <div class="image-container"></div>
 
-    <script src="./main.js"></script>
+<body>
+
+  <h1>Movie Search API</h1>
+
+  <form>
+    <input type="text" class="search-input" placeholder="Search movie..." />
+    <button type="submit">SEARCH</button>
+  </form>
+
+  <div class="image-container"></div>
+
+  <script src="main.js"></script>
+
 </body>
 </html>
