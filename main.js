@@ -1,30 +1,49 @@
-const form = document.querySelector('form');
-const container = document.querySelector('.image-container');
+const form = document.querySelector("form");
+const container = document.querySelector(".image-container");
 
-form.addEventListener('submit', (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  let query = form.querySelector('input').value;
-  console.log(query);
 
-  tvMazeApi(query);
+  const query = document.querySelector(".search-input").value.trim();
+
+  if (query === "") {
+    alert("Please enter movie name");
+    return;
+  }
+
+  fetchMovies(query);
 });
 
-async function tvMazeApi(query) {
-  const req = await fetch(`https://api.tvmaze.com/search/shows?q=${query}`);
-  const res = await req.json();
-  // console.log(res);
+async function fetchMovies(query) {
+  try {
+    const req = await fetch(
+      `https://api.tvmaze.com/search/shows?q=${query}`
+    );
 
-  makeImages(res); // pass the correct variable
+    const res = await req.json();
+
+    showMovies(res);
+  } catch (error) {
+    console.log("Error:", error);
+  }
 }
 
-function makeImages(movies) {
-  container.innerHTML = ''; //clear previous images
+function showMovies(movies) {
+  container.innerHTML = "";
+
+  let found = false;
+
   for (let movie of movies) {
-    if (movie.show.image) { // check if image exists
-      let src = movie.show.image.medium;
-      const img = document.createElement('img');
-      img.src = src;
+    if (movie.show && movie.show.image) {
+      const img = document.createElement("img");
+      img.src = movie.show.image.medium;
+
       container.appendChild(img);
+      found = true;
     }
+  }
+
+  if (!found) {
+    container.innerHTML = "<p>No results found</p>";
   }
 }
